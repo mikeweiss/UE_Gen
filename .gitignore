@@ -1,0 +1,32 @@
+# Unreal Engine generated files
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+
+# Build artifacts
+*.pdb
+*.lib
+*.dll
+*.dylib
+*.so
+*.exe
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+
+# IDE / OS files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.vcxproj*
+Thumbs.db
+.DS_Store
+
+# Release archives (built separately)
+*.zip

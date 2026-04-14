@@ -1,0 +1,173 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": -482.02465625289369,
+		"offset_y": -452.69370239759701,
+		"zoom": 1.1000001430511475
+	},
+	"nodes": [
+		{
+			"id": "129",
+			"class_type": "__UE_CameraData__",
+			"title": "UE Camera Data",
+			"pos_x": -40,
+			"pos_y": 120,
+			"widgets":
+			{
+				"active": "true",
+				"format": "Natural Language",
+				"position": "append",
+				"target": "positive only"
+			},
+			"widget_order": [
+				"active",
+				"format",
+				"position",
+				"target"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "153",
+			"class_type": "__UE_3DAssetExport__",
+			"title": "UE 3D Asset Export",
+			"pos_x": 1480,
+			"pos_y": 740,
+			"widgets":
+			{
+				"asset_path": "/Game/UE_Gen/Models",
+				"asset_name": "myTripoModel_v27",
+				"collision": "Project Default",
+				"nanite": "true",
+				"place_in_level": "true"
+			},
+			"widget_order": [
+				"asset_path",
+				"asset_name",
+				"collision",
+				"nanite",
+				"place_in_level"
+			],
+			"input_pins": [
+				{
+					"name": "mesh",
+					"type": "*"
+				}
+			],
+			"output_pins": []
+		},
+		{
+			"id": "157",
+			"class_type": "__UE_PromptAdherence__",
+			"title": "UE Prompt Adherence",
+			"pos_x": -20,
+			"pos_y": 340,
+			"widgets":
+			{
+				"adherence": "0.55"
+			},
+			"widget_order": [
+				"adherence"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "164",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": 880,
+			"pos_y": 680,
+			"widgets":
+			{
+				"image": "ComfyUI_00125_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "166",
+			"class_type": "TripoImageToModelNode",
+			"title": "Tripo: Image to Model",
+			"pos_x": 1160,
+			"pos_y": 540,
+			"widgets":
+			{
+				"model_version": "v3.0-20250812",
+				"style": "None",
+				"texture": "true",
+				"pbr": "false",
+				"model_seed": "42",
+				"orientation": "default",
+				"texture_seed": "42",
+				"texture_quality": "standard",
+				"texture_alignment": "original_image",
+				"face_limit": "-1",
+				"quad": "false",
+				"geometry_quality": "standard"
+			},
+			"widget_order": [
+				"model_version",
+				"style",
+				"texture",
+				"pbr",
+				"model_seed",
+				"orientation",
+				"texture_seed",
+				"texture_quality",
+				"texture_alignment",
+				"face_limit",
+				"quad",
+				"geometry_quality"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "model_file",
+					"type": "STRING"
+				},
+				{
+					"name": "model task_id",
+					"type": "MODEL_TASK_ID"
+				},
+				{
+					"name": "GLB",
+					"type": "FILE_3D_GLB"
+				}
+			]
+		}
+	],
+	"connections": [
+		{
+			"source_node": "164",
+			"source_output": 0,
+			"target_node": "166",
+			"target_input": "image"
+		},
+		{
+			"source_node": "166",
+			"source_output": 2,
+			"target_node": "153",
+			"target_input": "mesh"
+		}
+	]
+}
