@@ -1,0 +1,183 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": 355.09573419775518,
+		"offset_y": -349.32808914290536,
+		"zoom": 1
+	},
+	"nodes": [
+		{
+			"id": "129",
+			"class_type": "__UE_CameraData__",
+			"title": "UE Camera Data",
+			"pos_x": -160,
+			"pos_y": 80,
+			"widgets":
+			{
+				"active": "true",
+				"format": "Natural Language",
+				"position": "append",
+				"target": "positive only"
+			},
+			"widget_order": [
+				"active",
+				"format",
+				"position",
+				"target"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "157",
+			"class_type": "__UE_PromptAdherence__",
+			"title": "UE Prompt Adherence",
+			"pos_x": -160,
+			"pos_y": 240,
+			"widgets":
+			{
+				"adherence": "0.55"
+			},
+			"widget_order": [
+				"adherence"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "165",
+			"class_type": "KlingOmniProVideoToVideoNode",
+			"title": "Kling 3.0 Omni Video to Video",
+			"pos_x": 180,
+			"pos_y": 460,
+			"widgets":
+			{
+				"model_name": "kling-v3-omni",
+				"prompt": "vintage toaster on a kitchen counter with white wings and toast in the slots",
+				"aspect_ratio": "16:9",
+				"duration": "5",
+				"keep_original_sound": "false",
+				"resolution": "1080p",
+				"seed": "0"
+			},
+			"widget_order": [
+				"model_name",
+				"prompt",
+				"aspect_ratio",
+				"duration",
+				"keep_original_sound",
+				"resolution",
+				"seed"
+			],
+			"input_pins": [
+				{
+					"name": "reference_video",
+					"type": "VIDEO"
+				},
+				{
+					"name": "reference_images",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "VIDEO",
+					"type": "VIDEO"
+				}
+			]
+		},
+		{
+			"id": "168",
+			"class_type": "LoadVideo",
+			"title": "Load Video",
+			"pos_x": -140,
+			"pos_y": 360,
+			"local_file_path": "../../../../../../Users/neely/OneDrive/Documents/Unreal Projects/GenView/Saved/MovieRenders/LS_GenView.Layer1.mp4",
+			"widgets":
+			{
+				"file": "LS_GenView.Layer1.mp4"
+			},
+			"widget_order": [
+				"file"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "VIDEO",
+					"type": "VIDEO"
+				}
+			]
+		},
+		{
+			"id": "170",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": -140,
+			"pos_y": 540,
+			"widgets":
+			{
+				"image": "ComfyUI_00143_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "171",
+			"class_type": "SaveVideo",
+			"title": "Save Video",
+			"pos_x": 480,
+			"pos_y": 560,
+			"widgets":
+			{
+				"filename_prefix": "video/ComfyUI_ToonTest_01",
+				"format": "auto",
+				"codec": "auto"
+			},
+			"widget_order": [
+				"filename_prefix",
+				"format",
+				"codec"
+			],
+			"input_pins": [
+				{
+					"name": "video",
+					"type": "VIDEO"
+				}
+			],
+			"output_pins": []
+		}
+	],
+	"connections": [
+		{
+			"source_node": "168",
+			"source_output": 0,
+			"target_node": "165",
+			"target_input": "reference_video"
+		},
+		{
+			"source_node": "170",
+			"source_output": 0,
+			"target_node": "165",
+			"target_input": "reference_images"
+		},
+		{
+			"source_node": "165",
+			"source_output": 0,
+			"target_node": "171",
+			"target_input": "video"
+		}
+	]
+}

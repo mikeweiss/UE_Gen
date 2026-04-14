@@ -1,0 +1,205 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": 305.29808125437711,
+		"offset_y": 118.16273035926869,
+		"zoom": 0.89999997615814209
+	},
+	"nodes": [
+		{
+			"id": "113",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": 60,
+			"pos_y": -60,
+			"widgets":
+			{
+				"image": "BeerCans_00002_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "119",
+			"class_type": "MeshyImageToModelNode",
+			"title": "Meshy: Image to Model",
+			"pos_x": 640,
+			"pos_y": -40,
+			"widgets":
+			{
+				"model": "latest",
+				"should_remesh": "true",
+				"symmetry_mode": "auto",
+				"should_texture": "true",
+				"pose_mode": "",
+				"seed": "0"
+			},
+			"widget_order": [
+				"model",
+				"should_remesh",
+				"symmetry_mode",
+				"should_texture",
+				"pose_mode",
+				"seed"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "model_file",
+					"type": "STRING"
+				},
+				{
+					"name": "meshy_task_id",
+					"type": "MESHY_TASK_ID"
+				},
+				{
+					"name": "GLB",
+					"type": "FILE_3D_GLB"
+				},
+				{
+					"name": "FBX",
+					"type": "FILE_3D_FBX"
+				}
+			]
+		},
+		{
+			"id": "121",
+			"class_type": "__UE_MeshyImport__",
+			"title": "Meshy Import to Level",
+			"pos_x": 920,
+			"pos_y": 140,
+			"widgets":
+			{
+				"model_format": "GLB",
+				"asset_path": "/Game/UE_Gen/MeshyModels",
+				"asset_name": "",
+				"place_in_level": "true"
+			},
+			"widget_order": [
+				"model_format",
+				"asset_path",
+				"asset_name",
+				"place_in_level"
+			],
+			"input_pins": [
+				{
+					"name": "task_id",
+					"type": "STRING"
+				}
+			],
+			"output_pins": []
+		},
+		{
+			"id": "122",
+			"class_type": "SAM3Segmentation",
+			"title": "SAM3 Segmentation",
+			"pos_x": 340,
+			"pos_y": 140,
+			"widgets":
+			{
+				"prompt": "beer can",
+				"threshold": "0.5",
+				"min_width_pixels": "0",
+				"min_height_pixels": "0",
+				"use_video_model": "false",
+				"unload_after_run": "false",
+				"object_ids": ""
+			},
+			"widget_order": [
+				"prompt",
+				"threshold",
+				"min_width_pixels",
+				"min_height_pixels",
+				"use_video_model",
+				"unload_after_run",
+				"object_ids"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "segmented_image",
+					"type": "IMAGE"
+				},
+				{
+					"name": "masks",
+					"type": "MASK"
+				},
+				{
+					"name": "mask_combined",
+					"type": "MASK"
+				},
+				{
+					"name": "segs",
+					"type": "SEGS"
+				}
+			]
+		},
+		{
+			"id": "123",
+			"class_type": "MaskPreview",
+			"title": "Preview Mask",
+			"pos_x": 640,
+			"pos_y": 260,
+			"widgets":
+			{
+			},
+			"widget_order": [],
+			"input_pins": [
+				{
+					"name": "mask",
+					"type": "MASK"
+				}
+			],
+			"output_pins": []
+		}
+	],
+	"connections": [
+		{
+			"source_node": "113",
+			"source_output": 0,
+			"target_node": "119",
+			"target_input": "image"
+		},
+		{
+			"source_node": "119",
+			"source_output": 0,
+			"target_node": "121",
+			"target_input": "task_id"
+		},
+		{
+			"source_node": "113",
+			"source_output": 0,
+			"target_node": "122",
+			"target_input": "image"
+		},
+		{
+			"source_node": "122",
+			"source_output": 1,
+			"target_node": "123",
+			"target_input": "mask"
+		}
+	]
+}

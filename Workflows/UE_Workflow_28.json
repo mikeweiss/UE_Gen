@@ -1,0 +1,107 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": 79.852231629669063,
+		"offset_y": 146.58865357345994,
+		"zoom": 1.1000001430511475
+	},
+	"nodes": [
+		{
+			"id": "100",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": 200,
+			"pos_y": 0,
+			"widgets":
+			{
+				"image": "ComfyUI_00133_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "101",
+			"class_type": "__UE_ImageUpres__",
+			"title": "UE Image Upres",
+			"pos_x": 460,
+			"pos_y": 0,
+			"widgets":
+			{
+				"upscale_method": "lanczos",
+				"scale_factor": "3.0",
+				"output_bit_depth": "16",
+				"output_format": "EXR",
+				"save_path": "C:/Users/neely/OneDrive/Documents/Unreal Projects/GenView/Saved/Upres",
+				"filename_prefix": "UE_Gen_Upres"
+			},
+			"widget_order": [
+				"upscale_method",
+				"scale_factor",
+				"output_bit_depth",
+				"output_format",
+				"save_path",
+				"filename_prefix"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "102",
+			"class_type": "SaveImage",
+			"title": "Save Image",
+			"pos_x": 740,
+			"pos_y": 0,
+			"widgets":
+			{
+				"filename_prefix": "ComfyUI"
+			},
+			"widget_order": [
+				"filename_prefix"
+			],
+			"input_pins": [
+				{
+					"name": "images",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": []
+		}
+	],
+	"connections": [
+		{
+			"source_node": "100",
+			"source_output": 0,
+			"target_node": "101",
+			"target_input": "image"
+		},
+		{
+			"source_node": "101",
+			"source_output": 0,
+			"target_node": "102",
+			"target_input": "images"
+		}
+	]
+}

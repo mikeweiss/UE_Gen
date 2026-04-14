@@ -1,0 +1,209 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": 159.76242196888199,
+		"offset_y": -89.861418347181669,
+		"zoom": 0.89999997615814209
+	},
+	"nodes": [
+		{
+			"id": "129",
+			"class_type": "__UE_CameraData__",
+			"title": "UE Camera Data",
+			"pos_x": -160,
+			"pos_y": 80,
+			"widgets":
+			{
+				"active": "true",
+				"format": "Natural Language",
+				"position": "append",
+				"target": "positive only"
+			},
+			"widget_order": [
+				"active",
+				"format",
+				"position",
+				"target"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "157",
+			"class_type": "__UE_PromptAdherence__",
+			"title": "UE Prompt Adherence",
+			"pos_x": -160,
+			"pos_y": 240,
+			"widgets":
+			{
+				"adherence": "0.55"
+			},
+			"widget_order": [
+				"adherence"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "172",
+			"class_type": "__UE_DepthMap__",
+			"title": "UE Depth Map",
+			"pos_x": 114.90426580224482,
+			"pos_y": 266.52810134993661,
+			"widgets":
+			{
+				"max_depth": "50000"
+			},
+			"widget_order": [
+				"max_depth"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "173",
+			"class_type": "__UE_ViewportCapture__",
+			"title": "UE Viewport Capture",
+			"pos_x": 120,
+			"pos_y": 160,
+			"widgets":
+			{
+				"resolution": "1.0"
+			},
+			"widget_order": [
+				"resolution"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "174",
+			"class_type": "ImageBatch",
+			"title": "Batch Images",
+			"pos_x": 400,
+			"pos_y": 220,
+			"widgets":
+			{
+			},
+			"widget_order": [],
+			"input_pins": [
+				{
+					"name": "image1",
+					"type": "IMAGE"
+				},
+				{
+					"name": "image2",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "175",
+			"class_type": "ByteDanceSeedreamNode",
+			"title": "ByteDance Seedream 4.5 & 5.0",
+			"pos_x": 700,
+			"pos_y": 200,
+			"widgets":
+			{
+				"model": "seedream-4-5-251128",
+				"prompt": "Creative Story Lab Basketball on a basketball court, spotlight, dark blurred backgounrd",
+				"size_preset": "1440x2560 (9:16)",
+				"width": "1440",
+				"height": "2560",
+				"sequential_image_generation": "disabled",
+				"max_images": "1",
+				"seed": "0",
+				"watermark": "false",
+				"fail_on_partial": "false"
+			},
+			"widget_order": [
+				"model",
+				"prompt",
+				"size_preset",
+				"width",
+				"height",
+				"sequential_image_generation",
+				"max_images",
+				"seed",
+				"watermark",
+				"fail_on_partial"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "176",
+			"class_type": "SaveImage",
+			"title": "Save Image",
+			"pos_x": 1080,
+			"pos_y": 340,
+			"widgets":
+			{
+				"filename_prefix": "ComfyUI"
+			},
+			"widget_order": [
+				"filename_prefix"
+			],
+			"input_pins": [
+				{
+					"name": "images",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": []
+		}
+	],
+	"connections": [
+		{
+			"source_node": "173",
+			"source_output": 0,
+			"target_node": "174",
+			"target_input": "image1"
+		},
+		{
+			"source_node": "172",
+			"source_output": 0,
+			"target_node": "174",
+			"target_input": "image2"
+		},
+		{
+			"source_node": "174",
+			"source_output": 0,
+			"target_node": "175",
+			"target_input": "image"
+		},
+		{
+			"source_node": "175",
+			"source_output": 0,
+			"target_node": "176",
+			"target_input": "images"
+		}
+	]
+}

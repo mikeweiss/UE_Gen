@@ -1,0 +1,183 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": -229.03057432246931,
+		"offset_y": -328.7453787968339,
+		"zoom": 0.9999997615814209
+	},
+	"nodes": [
+		{
+			"id": "102",
+			"class_type": "__UE_CameraData__",
+			"title": "UE Camera Data",
+			"pos_x": 340,
+			"pos_y": 420,
+			"widgets":
+			{
+				"active": "true",
+				"format": "Natural Language",
+				"position": "append",
+				"target": "positive only"
+			},
+			"widget_order": [
+				"active",
+				"format",
+				"position",
+				"target"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "108",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": 560,
+			"pos_y": 520,
+			"widgets":
+			{
+				"image": "ComfyUI_00138_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "110",
+			"class_type": "LoadVideo",
+			"title": "Load Video",
+			"pos_x": 560,
+			"pos_y": 420,
+			"local_file_path": "../../../../../../Users/neely/OneDrive/Documents/Unreal Projects/GenView/Saved/MovieRenders/LS_GenView.Layer1.mp4",
+			"widgets":
+			{
+				"file": "LS_GenView.Layer1.mp4"
+			},
+			"widget_order": [
+				"file"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "VIDEO",
+					"type": "VIDEO"
+				}
+			]
+		},
+		{
+			"id": "111",
+			"class_type": "KlingOmniProVideoToVideoNode",
+			"title": "Kling 3.0 Omni Video to Video",
+			"pos_x": 840,
+			"pos_y": 520,
+			"widgets":
+			{
+				"model_name": "kling-v3-omni",
+				"prompt": "shot with wide-angle 21mm lens, moderate perspective, widescreen 16:9 framing, Vintage toaster with wings as a race car. Wheels spinning fast as it speeds race track",
+				"aspect_ratio": "9:16",
+				"duration": "8",
+				"keep_original_sound": "false",
+				"resolution": "1080p",
+				"seed": "0"
+			},
+			"widget_order": [
+				"model_name",
+				"prompt",
+				"aspect_ratio",
+				"duration",
+				"keep_original_sound",
+				"resolution",
+				"seed"
+			],
+			"input_pins": [
+				{
+					"name": "reference_video",
+					"type": "VIDEO"
+				},
+				{
+					"name": "reference_images",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "VIDEO",
+					"type": "VIDEO"
+				}
+			]
+		},
+		{
+			"id": "112",
+			"class_type": "SaveVideo",
+			"title": "Save Video",
+			"pos_x": 1140,
+			"pos_y": 580,
+			"widgets":
+			{
+				"filename_prefix": "video/ComfyUI",
+				"format": "auto",
+				"codec": "auto"
+			},
+			"widget_order": [
+				"filename_prefix",
+				"format",
+				"codec"
+			],
+			"input_pins": [
+				{
+					"name": "video",
+					"type": "VIDEO"
+				}
+			],
+			"output_pins": []
+		},
+		{
+			"id": "113",
+			"class_type": "__UE_PromptAdherence__",
+			"title": "UE Prompt Adherence",
+			"pos_x": 340,
+			"pos_y": 560,
+			"widgets":
+			{
+				"adherence": "0.5"
+			},
+			"widget_order": [
+				"adherence"
+			],
+			"input_pins": [],
+			"output_pins": []
+		}
+	],
+	"connections": [
+		{
+			"source_node": "110",
+			"source_output": 0,
+			"target_node": "111",
+			"target_input": "reference_video"
+		},
+		{
+			"source_node": "108",
+			"source_output": 0,
+			"target_node": "111",
+			"target_input": "reference_images"
+		},
+		{
+			"source_node": "111",
+			"source_output": 0,
+			"target_node": "112",
+			"target_input": "video"
+		}
+	]
+}

@@ -1,0 +1,168 @@
+{
+	"version": 1,
+	"view":
+	{
+		"offset_x": -184.3236801038172,
+		"offset_y": 9.474873517203406,
+		"zoom": 1.4000000953674316
+	},
+	"nodes": [
+		{
+			"id": "100",
+			"class_type": "__UE_CameraData__",
+			"title": "UE Camera Data",
+			"pos_x": 0,
+			"pos_y": -220,
+			"widgets":
+			{
+				"active": "true",
+				"format": "Natural Language",
+				"position": "prepend",
+				"target": "positive only"
+			},
+			"widget_order": [
+				"active",
+				"format",
+				"position",
+				"target"
+			],
+			"input_pins": [],
+			"output_pins": []
+		},
+		{
+			"id": "101",
+			"class_type": "__UE_DepthMap__",
+			"title": "UE Depth Map",
+			"pos_x": 0,
+			"pos_y": -80,
+			"widgets":
+			{
+				"max_depth": "50000"
+			},
+			"widget_order": [
+				"max_depth"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		},
+		{
+			"id": "113",
+			"class_type": "LoadImage",
+			"title": "Load Image",
+			"pos_x": 300,
+			"pos_y": -100,
+			"widgets":
+			{
+				"image": "BeerCans_00002_.png"
+			},
+			"widget_order": [
+				"image"
+			],
+			"input_pins": [],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				},
+				{
+					"name": "MASK",
+					"type": "MASK"
+				}
+			]
+		},
+		{
+			"id": "114",
+			"class_type": "__UE_MeshyImport__",
+			"title": "Meshy Import to Level",
+			"pos_x": 980,
+			"pos_y": 40,
+			"widgets":
+			{
+				"model_format": "GLB",
+				"asset_path": "/Game/UE_Gen/MeshyModels",
+				"asset_name": "BeerCans_01",
+				"place_in_level": "true"
+			},
+			"widget_order": [
+				"model_format",
+				"asset_path",
+				"asset_name",
+				"place_in_level"
+			],
+			"input_pins": [
+				{
+					"name": "task_id",
+					"type": "STRING"
+				}
+			],
+			"output_pins": []
+		},
+		{
+			"id": "119",
+			"class_type": "MeshyImageToModelNode",
+			"title": "Meshy: Image to Model",
+			"pos_x": 640,
+			"pos_y": -40,
+			"widgets":
+			{
+				"model": "latest",
+				"should_remesh": "true",
+				"symmetry_mode": "auto",
+				"should_texture": "true",
+				"pose_mode": "",
+				"seed": "0"
+			},
+			"widget_order": [
+				"model",
+				"should_remesh",
+				"symmetry_mode",
+				"should_texture",
+				"pose_mode",
+				"seed"
+			],
+			"input_pins": [
+				{
+					"name": "image",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "model_file",
+					"type": "STRING"
+				},
+				{
+					"name": "meshy_task_id",
+					"type": "MESHY_TASK_ID"
+				},
+				{
+					"name": "GLB",
+					"type": "FILE_3D_GLB"
+				},
+				{
+					"name": "FBX",
+					"type": "FILE_3D_FBX"
+				}
+			]
+		}
+	],
+	"connections": [
+		{
+			"source_node": "113",
+			"source_output": 0,
+			"target_node": "119",
+			"target_input": "image"
+		},
+		{
+			"source_node": "119",
+			"source_output": 0,
+			"target_node": "114",
+			"target_input": "task_id"
+		}
+	]
+}
