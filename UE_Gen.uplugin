@@ -6,8 +6,8 @@
 	"Description": "Capture the editor viewport and depth buffer as inputs for generative AI workflows. Supports any REST-based AI backend with LoRA references and real-time preview.",
 	"Category": "AI Tools",
 	"CreatedBy": "C. Michael Neely",
-	"CreatedByURL": "https://github.com/neely3d",
-	"DocsURL": "https://github.com/neely3d/UE_Gen",
+	"CreatedByURL": "https://github.com/neely3d-rgb",
+	"DocsURL": "https://github.com/neely3d-rgb/UE_Gen",
 	"MarketplaceURL": "",
 	"CanContainContent": true,
 	"IsBetaVersion": true,
@@ -26,7 +26,7 @@
 			]
 		}
 	],
-	"SupportURL": "https://github.com/neely3d/UE_Gen/issues",
+	"SupportURL": "https://github.com/neely3d-rgb/UE_Gen/issues",
 	"Plugins": [
 		{
 			"Name": "LevelSequenceEditor",
