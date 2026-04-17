@@ -35,10 +35,6 @@
 		{
 			"Name": "MovieRenderPipeline",
 			"Enabled": true
-		},
-		{
-			"Name": "GaussianSplatGenerator",
-			"Enabled": true
 		}
 	]
 }

@@ -2,9 +2,9 @@
 	"version": 1,
 	"view":
 	{
-		"offset_x": -229.03057432246931,
-		"offset_y": -328.7453787968339,
-		"zoom": 0.9999997615814209
+		"offset_x": -99.847604805327634,
+		"offset_y": -399.91148228443706,
+		"zoom": 0.59999966621398926
 	},
 	"nodes": [
 		{
@@ -34,10 +34,10 @@
 			"class_type": "LoadImage",
 			"title": "Load Image",
 			"pos_x": 560,
-			"pos_y": 520,
+			"pos_y": 620,
 			"widgets":
 			{
-				"image": "ComfyUI_00138_.png"
+				"image": "ComfyUI_racecars_00003_.png"
 			},
 			"widget_order": [
 				"image"
@@ -85,9 +85,9 @@
 			"widgets":
 			{
 				"model_name": "kling-v3-omni",
-				"prompt": "shot with wide-angle 21mm lens, moderate perspective, widescreen 16:9 framing, Vintage toaster with wings as a race car. Wheels spinning fast as it speeds race track",
-				"aspect_ratio": "9:16",
-				"duration": "8",
+				"prompt": "shot with wide-angle 21mm lens, moderate perspective, widescreen 16:9 framing, TRex with tiny arms as a race car. Wheels spinning fast as it speeds race track in comicbook style, no text",
+				"aspect_ratio": "16:9",
+				"duration": "5",
 				"keep_original_sound": "false",
 				"resolution": "1080p",
 				"seed": "0"
@@ -126,7 +126,7 @@
 			"pos_y": 580,
 			"widgets":
 			{
-				"filename_prefix": "video/ComfyUI",
+				"filename_prefix": "video/ComfyUI_Racecar_TREX_02",
 				"format": "auto",
 				"codec": "auto"
 			},
@@ -176,8 +176,4 @@
 		{
 			"source_node": "111",
 			"source_output": 0,
-			"target_node": "112",
-			"target_input": "video"
-		}
-	]
-}
+			"target_node"
