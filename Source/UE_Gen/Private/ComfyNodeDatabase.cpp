@@ -11,6 +11,50 @@ FComfyNodeDatabase& FComfyNodeDatabase::Get()
 	return Instance;
 }
 
+/**
+ * Strip emoji and other non-BMP Unicode characters that Slate cannot render.
+ * Also trims any leading/trailing whitespace left behind after removal.
+ */
+static FString StripEmoji(const FString& Input)
+{
+	FString Result;
+	Result.Reserve(Input.Len());
+
+	const TCHAR* Ptr = *Input;
+	while (*Ptr)
+	{
+		// UTF-16 surrogate pair (emoji / non-BMP) — skip both code units
+		if (*Ptr >= 0xD800 && *Ptr <= 0xDBFF)
+		{
+			Ptr++; // high surrogate
+			if (*Ptr >= 0xDC00 && *Ptr <= 0xDFFF)
+			{
+				Ptr++; // low surrogate
+			}
+			continue;
+		}
+
+		// Skip common emoji block characters in the BMP (misc symbols, dingbats,
+		// variation selectors, zero-width joiners, etc.)
+		TCHAR Ch = *Ptr;
+		bool bSkip =
+			(Ch >= 0x2600 && Ch <= 0x27BF) ||  // Misc Symbols + Dingbats
+			(Ch >= 0x2B50 && Ch <= 0x2B55) ||  // Additional symbols
+			(Ch >= 0xFE00 && Ch <= 0xFE0F) ||  // Variation Selectors
+			(Ch == 0x200D) ||                   // Zero-Width Joiner
+			(Ch == 0x20E3);                     // Combining Enclosing Keycap
+
+		if (!bSkip)
+		{
+			Result.AppendChar(Ch);
+		}
+		Ptr++;
+	}
+
+	Result.TrimStartAndEndInline();
+	return Result;
+}
+
 void FComfyNodeDatabase::ParseObjectInfo(TSharedPtr<FJsonObject> Root)
 {
 	if (!Root.IsValid()) return;
@@ -39,14 +83,20 @@ FComfyNodeDef FComfyNodeDatabase::ParseSingleNode(const FString& ClassType, TSha
 	FComfyNodeDef Def;
 	Def.ClassType = ClassType;
 
-	// Display name
+	// Display name — strip emoji that Slate cannot render
 	if (!NodeInfo->TryGetStringField(TEXT("display_name"), Def.DisplayName) || Def.DisplayName.IsEmpty())
 	{
 		Def.DisplayName = ClassType;
 	}
+	Def.DisplayName = StripEmoji(Def.DisplayName);
+	if (Def.DisplayName.IsEmpty())
+	{
+		Def.DisplayName = ClassType;
+	}
 
-	// Category
+	// Category — also strip emoji from category paths
 	NodeInfo->TryGetStringField(TEXT("category"), Def.Category);
+	Def.Category = StripEmoji(Def.Category);
 
 	// Description
 	NodeInfo->TryGetStringField(TEXT("description"), Def.Description);
