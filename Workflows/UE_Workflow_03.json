@@ -84,7 +84,7 @@
 			"widgets":
 			{
 				"model_format": "GLB",
-				"asset_path": "/Game/UE_Gen/MeshyModels",
+				"asset_path": "/Game/ViewGen/MeshyModels",
 				"asset_name": "BeerCans_01",
 				"place_in_level": "true"
 			},

@@ -45,7 +45,7 @@
 				"output_bit_depth": "16",
 				"output_format": "EXR",
 				"save_path": "C:/Users/neely/OneDrive/Documents/Unreal Projects/GenView/Saved/Upres",
-				"filename_prefix": "UE_Gen_Upres"
+				"filename_prefix": "ViewGen_Upres"
 			},
 			"widget_order": [
 				"upscale_method",

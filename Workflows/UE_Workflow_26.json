@@ -37,7 +37,7 @@
 			"pos_y": 740,
 			"widgets":
 			{
-				"asset_path": "/Game/UE_Gen/Models",
+				"asset_path": "/Game/ViewGen/Models",
 				"asset_name": "myTripoModel_v27",
 				"collision": "Project Default",
 				"nanite": "true",

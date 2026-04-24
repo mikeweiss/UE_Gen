@@ -1,8 +1,8 @@
-# UE Gen — AI Viewport Generator for Unreal Engine
+# ViewGen — AI Viewport Generator for Unreal Engine
 
 An Unreal Engine 5.7 editor plugin that captures the viewport and depth buffer as inputs for generative AI workflows. Connect to any REST-based AI backend (ComfyUI, Meshy, etc.) with LoRA support, real-time preview, and integrated rendering.
 
-![UE Gen Screenshot](Docs/screenshot_placeholder.png)
+![ViewGen Screenshot](Docs/screenshot_placeholder.png)
 
 ## Features
 
@@ -11,7 +11,7 @@ An Unreal Engine 5.7 editor plugin that captures the viewport and depth buffer a
 - **Meshy 3D Generation** — Text-to-3D and image-to-3D model generation via the Meshy API, with in-editor preview.
 - **Segmentation Capture** — Object and material segmentation masks for targeted inpainting and compositing.
 - **Quick Render (Sequencer)** — One-click Movie Render Graph rendering of the active Level Sequence directly from the plugin panel.
-- **StoryTools Menu** — Unified top-level editor menu integrating UE Gen with companion plugins (SceneBreak, Gaussian Splat Generator).
+- **StoryTools Menu** — Unified top-level editor menu integrating ViewGen with companion plugins (SceneBreak, Gaussian Splat Generator).
 
 ## Requirements
 
@@ -26,19 +26,19 @@ An Unreal Engine 5.7 editor plugin that captures the viewport and depth buffer a
    ```
    YourProject/
    └── Plugins/
-       └── UE_Gen/
+       └── ViewGen/
            ├── Source/
            ├── Workflows/
-           ├── UE_Gen.uplugin
+           ├── ViewGen.uplugin
            └── ...
    ```
 2. Regenerate project files (right-click your `.uproject` → Generate Visual Studio project files).
 3. Build and launch the editor.
-4. The **StoryTools** menu will appear in the main menu bar. Click **StoryTools → UE Gen** to open the panel.
+4. The **StoryTools** menu will appear in the main menu bar. Click **StoryTools → ViewGen** to open the panel.
 
 ## Configuration
 
-1. Open the UE Gen panel via **StoryTools → UE Gen**.
+1. Open the ViewGen panel via **StoryTools → ViewGen**.
 2. In the **Settings** section, enter your ComfyUI server address (default: `http://127.0.0.1:8188`).
 3. Optionally enter your Meshy API key for 3D generation features.
 4. Select a workflow template from the Workflows dropdown, or load a custom ComfyUI workflow JSON.
@@ -49,7 +49,7 @@ The `Workflows/` folder contains 30+ ComfyUI workflow templates covering common 
 
 ## Companion Plugins
 
-UE Gen is part of the **StoryTools** suite. These companion plugins are optional and have their own repositories:
+ViewGen is part of the **StoryTools** suite. These companion plugins are optional and have their own repositories:
 
 - **SceneBreak** — AI-powered scene breakdown and asset discovery from reference images.
 - **Gaussian Splat Generator** — Generate and import Gaussian splat point clouds from images.
@@ -64,4 +64,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## Author
 
-C. Michael Neely
+Creative Story Lab Inc

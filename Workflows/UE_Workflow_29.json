@@ -176,4 +176,8 @@
 		{
 			"source_node": "111",
 			"source_output": 0,
-			"target_node"
+			"target_node": "112",
+			"target_input": "video"
+		}
+	]
+}

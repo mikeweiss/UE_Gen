@@ -1,0 +1,40 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "2.0.0",
+	"FriendlyName": "ViewGen - AI Viewport Generator",
+	"Description": "Capture the editor viewport and depth buffer as inputs for generative AI workflows. Supports any REST-based AI backend with LoRA references and real-time preview.",
+	"Category": "AI Tools",
+	"CreatedBy": "Creative Story Lab Inc",
+	"CreatedByURL": "https://github.com/neely3d-rgb",
+	"DocsURL": "https://github.com/neely3d-rgb/ViewGen",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EnabledByDefault": true,
+	"Modules": [
+		{
+			"Name": "ViewGen",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		}
+	],
+	"SupportURL": "https://github.com/neely3d-rgb/ViewGen/issues",
+	"Plugins": [
+		{
+			"Name": "LevelSequenceEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "MovieRenderPipeline",
+			"Enabled": true
+		}
+	]
+}

@@ -178,3 +178,62 @@
 		},
 		{
 			"id": "118",
+			"class_type": "ImageBatch",
+			"title": "Batch Images",
+			"pos_x": 580,
+			"pos_y": 660,
+			"widgets":
+			{
+			},
+			"widget_order": [],
+			"input_pins": [
+				{
+					"name": "image1",
+					"type": "IMAGE"
+				},
+				{
+					"name": "image2",
+					"type": "IMAGE"
+				}
+			],
+			"output_pins": [
+				{
+					"name": "IMAGE",
+					"type": "IMAGE"
+				}
+			]
+		}
+	],
+	"connections": [
+		{
+			"source_node": "110",
+			"source_output": 0,
+			"target_node": "111",
+			"target_input": "reference_video"
+		},
+		{
+			"source_node": "111",
+			"source_output": 0,
+			"target_node": "112",
+			"target_input": "video"
+		},
+		{
+			"source_node": "117",
+			"source_output": 0,
+			"target_node": "118",
+			"target_input": "image1"
+		},
+		{
+			"source_node": "116",
+			"source_output": 0,
+			"target_node": "118",
+			"target_input": "image2"
+		},
+		{
+			"source_node": "118",
+			"source_output": 0,
+			"target_node": "111",
+			"target_input": "reference_images"
+		}
+	]
+}
